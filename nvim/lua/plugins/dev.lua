@@ -7,7 +7,7 @@ return {
     name = "catppuccin",
     priority = 1000,
     opts = {
-      flavour = "frappe",
+      flavour = "latte",
       transparent_background = false,
       integrations = {
         cmp = true,
@@ -37,8 +37,62 @@ return {
     },
   },
   {
+    "rebelot/kanagawa.nvim",
+    priority = 1000,
+    opts = {
+      compile = false,
+      undercurl = true,
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true },
+      statementStyle = { bold = true },
+      typeStyle = {},
+      transparent = false,
+      dimInactive = false,
+      terminalColors = true,
+      colors = {
+        palette = {},
+        theme = {
+          wave = {},
+          lotus = {},
+          dragon = {},
+          all = {},
+        },
+      },
+    },
+  },
+  {
+    "EdenEast/nightfox.nvim",
+    priority = 1000,
+    opts = {
+      options = {
+        compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+        compile_file_write = true,
+        styles = {
+          comments = "italic",
+          functions = "NONE",
+          keywords = "italic",
+          statements = "NONE",
+          types = "NONE",
+          numbers = "NONE",
+          strings = "NONE",
+          variables = "NONE",
+        },
+        inverse = {
+          match_paren = false,
+          visual = false,
+          search = false,
+        },
+      },
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = { colorscheme = "tokyonight" },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "folke/snacks.nvim" },
   },
 
   -- ============================================================
@@ -66,6 +120,16 @@ return {
       },
     },
   },
+
+  -- ============================================================
+  -- Rust
+  -- ============================================================
+  { import = "lazyvim.plugins.extras.lang.rust" },
+
+  -- ============================================================
+  -- Java / Spring Boot
+  -- ============================================================
+  { import = "lazyvim.plugins.extras.lang.java" },
 
   -- ============================================================
   -- Universal imports
@@ -188,8 +252,22 @@ return {
         "markdown",
         "markdown_inline",
         "sql",
+        "rust",
+        "toml",
+        "java",
       },
     },
   },
 
+  -- ============================================================
+  -- Disable redundant java-language-server (jdtls is used instead)
+  -- ============================================================
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        java_language_server = { enabled = false },
+      },
+    },
+  },
 }

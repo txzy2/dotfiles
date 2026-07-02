@@ -14,6 +14,16 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  callback = function()
+    local bufname = vim.api.nvim_buf_get_name(0)
+    if bufname:find("/home/kamaev/Documents/crm", 1, true) == 1 then
+      vim.b.autoformat = false
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.log",
   callback = function()
